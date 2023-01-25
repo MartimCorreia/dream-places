@@ -1,0 +1,6 @@
+<h1>Booking <%= @house.name %></h1>
+
+<%= simple_form_for [@house, @booking] do |f| %>
+  <%= f.input :number_of_nights %>
+  <%= f.submit "Book", class: "btn btn-primary" %>
+<% end %>

@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <% @bookings.each do |booking| %>
+      <div class="col-sm-3">
+        <div class="card" style="width: 18rem;">
+          <%= image_tag "house_placeholder.png", width: "500px", class: "card-img-top" %>
+          <div class="card-title">
+            <h5 class="text-center"><%= booking.house.name %> - <%= booking.house.price_per_night %></h5>
+          </div>
+          <div class="card-body">
+          <% if booking.number_of_nights != 1 %>
+           <p>You'll be staying here for <%= booking.number_of_nights %> nights</p>
+          <% else %>
+            <p>You'll be staying here for <%= booking.number_of_nights %> night</p>
+          <% end %>
+           <p>Amount to pay: <%= booking.number_of_nights * booking.house.price_per_night %> €</p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
