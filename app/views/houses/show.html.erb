@@ -1,0 +1,18 @@
+<div class="container">
+
+  <div class="card" style="width: 18rem;">
+    <%= image_tag "house_placeholder.png", width: "500px", class: "card-img-top" %>
+    <div class="card-body">
+      <h5 class="card-title"><%= @house.name %> - <small><%= @house.price_per_night %>€</small></h1>
+      <p class="card-text"><%= @house.description %></p>
+    </div>
+    <div class="card-body d-flex justify-content-between">
+      <%= link_to "Edit", edit_house_path(@house) %>
+      <%= link_to "Close housing",
+        house_path(@house),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+      %>
+    </div>
+  </div>
+
+</div>

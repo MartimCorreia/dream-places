@@ -1,0 +1,18 @@
+<h1>Houses index</h1>
+<div class="container">
+  <div class="row">
+    <% @houses.each do |house|  %>
+      <div class="col-sm-3">
+        <div class="card" style="width: 18rem;">
+          <%= image_tag "house_placeholder.png", width: "500px", class: "card-img-top" %>
+          <div class="card-title">
+            <h5><%= house.name %> - <%= house.price_per_night %>€</h5>
+          </div>
+          <div class="card-body">
+            <p><%= house.description %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
