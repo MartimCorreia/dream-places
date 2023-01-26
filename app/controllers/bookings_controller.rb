@@ -13,8 +13,15 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.house_id = @house.id
     @booking.user_id = current_user.id
-    @house.update(booked: true) if @booking.save == true
+    @notification = Notification.new(
+      content: "#{current_user.firstName} #{current_user.lastName} wants to rent #{@booking.house.name} for #{@booking.number_of_nights} nights"
+      )
     @booking.save
+    @notification.save
+    @notification.user_id = @booking.house.user_id
+    if @booking.save == true
+      @house.update(booked: true)
+    end
 
     redirect_to root_path
   end
@@ -28,6 +35,10 @@ class BookingsController < ApplicationController
   def booking_params
     params.require(:booking).permit(:number_of_nights)
   end
+
+  # def notification_params
+  #   params.require(:notification).permit(:content)
+  # end
 
   def set_house
     @house = House.find(params[:house_id])
