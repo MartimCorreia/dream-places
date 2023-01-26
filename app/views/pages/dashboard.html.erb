@@ -8,10 +8,12 @@
           <div class="col-sm-12">
             <div class="card my-3" style="width: 18rem;">
               <%= image_tag "house_placeholder.png", width: "500px", class: "card-img-top" %>
+              <div class ="p-1 text-center">
               <div class="card-title">
                 <h5><%= house.name %></h5>
               </div>
               <%= link_to "See more", house_path(house) %>
+              </div>
             </div>
           </div>
         <% end %>
