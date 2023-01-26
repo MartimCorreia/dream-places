@@ -3,7 +3,10 @@
   <ul>
     <% @notifications.each do |notification| %>
       <li>
-        <p><%= notification.content %></p>
+        <div class="d-flex align-items-center">
+          <p class="mb-0 me-5"><%= notification.content %></p>
+          <p class="mb-0">Accept <%= check_box_tag "accept" %></p>
+        </div>
       </li>
     <% end %>
   </ul>
