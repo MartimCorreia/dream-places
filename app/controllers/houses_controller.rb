@@ -3,6 +3,7 @@ class HousesController < ApplicationController
   before_action :set_house, only: [:show, :edit, :update, :destroy]
 
   def index
+    @bookings = Booking.all
     @houses = House.all
   end
 

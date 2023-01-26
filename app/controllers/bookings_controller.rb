@@ -17,8 +17,8 @@ class BookingsController < ApplicationController
       content: "#{current_user.firstName} #{current_user.lastName} wants to rent #{@booking.house.name} for #{@booking.number_of_nights} nights"
       )
     @booking.save
-    @notification.save
     @notification.user_id = @booking.house.user_id
+    @notification.save
     if @booking.save == true
       @house.update(booked: true)
     end

@@ -3,7 +3,7 @@
   <div class="row">
     <% @houses.each do |house|  %>
       <div class="col-sm-3">
-        <% if house.booked == false %>
+        <% if @bookings.exists?(house_id: house.id) == false %>
           <div class="card" style="width: 18rem;">
             <%= image_tag "house_placeholder.png", width: "500px", class: "card-img-top" %>
             <div class="card-title">

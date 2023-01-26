@@ -15,9 +15,16 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :houses, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     resources :bookings, only: [:new, :create] do
-      resources :notifications, only: [:show, :create]
+      resources :notifications, only: [:create]
     end
   end
+
+    resources :notifications, only: [:index] do
+      collection do
+        get :user_personal
+      end
+    end
+
 
   resources :bookings, only: [:index] do
     collection do
