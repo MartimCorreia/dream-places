@@ -8,6 +8,7 @@ class HousesController < ApplicationController
   end
 
   def show
+    @rules = @house.rules.split(",")
   end
 
   def new

@@ -18,6 +18,7 @@ class BookingsController < ApplicationController
       )
     @booking.save
     @notification.user_id = @booking.house.user_id
+    raise
     @notification.save
     if @booking.save == true
       @house.update(booked: true)

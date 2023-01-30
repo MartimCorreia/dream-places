@@ -1,31 +1,36 @@
 <h1 class="text-center">Houses index</h1>
-<div class="container">
-  <div class="row">
-    <% @houses.each do |house|  %>
-      <div class="col-sm-3">
-        <% if @bookings.exists?(house_id: house.id) == false %>
-          <div class="card" style="width: 18rem;">
-            <%= image_tag "house_placeholder.png", width: "500px", class: "card-img-top" %>
-            <div class="card-title">
-              <h5><%= house.name %> - <%= house.price_per_night %>€</h5>
+<div class="house-index-background">
+
+  <div class="container">
+    <div class="row">
+      <% @houses.each do |house|  %>
+        <div class="col-sm-3">
+          <% if @bookings.exists?(house_id: house.id) == false %>
+            <div class="card" style="width: 18rem;">
+              <%= image_tag "house_placeholder.png", width: "500px", class: "card-img-top" %>
+              <div class="card-title p-3 pb-0">
+                <h5><%= house.name %> - <%= house.price_per_night %>€</h5>
+              </div>
+              <div class="card-body pb-1">
+                <p><%= house.description %></p>
+              </div>
+              <div class="d-flex card-body p-2 pt-0 pe-3 justify-content-end">
+                <%= link_to "See more", house_path(house) if !current_user.houses.include?(house) %>
+              </div>
             </div>
-            <div class="card-body d-flex justify-content-between">
-              <p><%= house.description %></p>
-              <%= link_to "Book", new_house_booking_path(house) if !current_user.houses.include?(house) %>
+          <% else %>
+            <div class="card" style="width: 18rem;">
+              <%= image_tag "house_placeholder.png", width: "500px", class: "card-img-top" %>
+              <div class="card-title p-3 pb-0">
+                <h5><%= house.name %> - <%= house.price_per_night %>€</h5>
+              </div>
+              <div class="card-body d-flex justify-content-between">
+                <p> <strong>This place is Booked already.</strong></p>
+              </div>
             </div>
-          </div>
-        <% else %>
-          <div class="card" style="width: 18rem;">
-            <%= image_tag "house_placeholder.png", width: "500px", class: "card-img-top" %>
-            <div class="card-title">
-              <h5><%= house.name %> - <%= house.price_per_night %>€</h5>
-            </div>
-            <div class="card-body d-flex justify-content-between">
-              <p> <strong>This place is Booked already.</strong></p>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

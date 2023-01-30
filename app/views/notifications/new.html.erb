@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Booking <%= @house.name %></h1>
+    <%= image_tag "house_placeholder.png", width: "500px" %>
+
+  <%= simple_form_for [@house, @notification] do |f| %>
+    <%= f.input :nights, label: "How long would you like to stay?" %>
+    <%= f.hidden_field :content, :value => "#{current_user.firstName} #{current_user.lastName} wants to book #{@house.name}" %>
+    <%= f.submit "Send Request", class: "btn btn-primary" %>
+  <% end %>
+</div>

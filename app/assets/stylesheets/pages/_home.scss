@@ -1,17 +1,31 @@
 // Specific CSS for your home-page
-.landing-size{
-  margin-top: 70px;
-  width: 100%;
+
+.landing-background{
+  background-image: url(landing_background.jpg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 80%;
   height: 545px;
-}
-.fill-vertical1{
-  border-radius: 15px 0 0 15px;
+  border-radius: 15px 15px;
   display: block;
   max-width: 100%;
   max-height: 100%;
   -webkit-box-shadow: -3px 6px 5px -4px rgba(0,0,0,0.3);
   -moz-box-shadow: -3px 6px 5px -4px rgba(0,0,0,0.3);
   box-shadow: -3px 6px 5px -4px rgba(0,0,0,0.3);
+
+}
+.landing-background h1{
+  font-family: 'Poppins', sans-serif;
+  color: rgb(196, 83, 83);
+}
+.landing-size{
+  margin-top: 70px;
+  width: 100%;
+  height: 545px;
+}
+.fill-vertical1{
+
 }
 
 

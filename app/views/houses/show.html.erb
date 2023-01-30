@@ -1,18 +1,67 @@
-<div class="container">
+<% if @house.user == current_user  %>
 
-  <div class="card" style="width: 18rem;">
-    <%= image_tag "house_placeholder.png", width: "500px", class: "card-img-top" %>
-    <div class="card-body">
-      <h5 class="card-title"><%= @house.name %> - <small><%= @house.price_per_night %>€</small></h1>
-      <p class="card-text"><%= @house.description %></p>
+  <div class="container">
+      <div class="card" style="width: 18rem;">
+        <%= image_tag "house_placeholder.png", width: "500px", class: "card-img-top" %>
+        <div class="card-body">
+          <h5 class="card-title"><%= @house.name %> - <small><%= @house.price_per_night %>€</small></h1>
+          <p class="card-text"><%= @house.description %></p>
+        </div>
+        <div class="card-body d-flex justify-content-between">
+          <%= link_to "Edit", edit_house_path(@house) %>
+          <%= link_to "Close housing",
+            house_path(@house),
+            data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+          %>
+        </div>
+      </div>
+  </div>
+
+<% else %>
+  <div class="container p-4">
+    <div class="d-flex justify-content-center">
+      <%= image_tag "house_placeholder.png", width: "400px" %>
     </div>
-    <div class="card-body d-flex justify-content-between">
-      <%= link_to "Edit", edit_house_path(@house) %>
-      <%= link_to "Close housing",
-        house_path(@house),
-        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-      %>
+  </div>
+  <div class="container d-flex justify-content-around">
+    <div id="house-details">
+      <div>
+        <h2>Info:</h2>
+        <ul>
+          <li>Name: <%= @house.name %> </li>
+          <li>Description: <%= @house.description %> </li>
+          <li>Location: TODO </li>
+          <li>Price: <%= @house.price_per_night %>€/night </li>
+        </ul>
+        <h2>Rules:</h2>
+        <ul>
+          <% @rules.each do |rule| %>
+            <li> <%= rule %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <div id="host-details">
+      <h2>Host:</h2>
+
+        <%= image_tag "house_placeholder.png", width: "80px", class: "rounded-circle mx-auto d-block" %>
+
+      <ul>
+        <li>Name: <%= @house.user.firstName %> <%= @house.user.lastName %></li>
+        <li>Rating: TODO add @rating to User</li>
+        <li></li>
+      </ul>
     </div>
   </div>
 
-</div>
+    <div class="container d-flex justify-content-center mt-4">
+      <% if @house.booked == false %>
+       <%= link_to "Request a booking to the Host!", new_house_notification_path(@house), class:"btn-lg btn-primary" %>
+      <% else %>
+        <%= link_to "Book it!", new_house_booking_path(@house), class:"btn btn-primary disbaled"  %>
+      <% end %>
+    </div>
+
+
+<% end %>

@@ -14,10 +14,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :houses, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
-    resources :bookings, only: [:new, :create] do
-      resources :notifications, only: [:create]
-    end
+    resources :bookings, only: [:new, :create]
+    resources :notifications, only: [:new, :create]
   end
+
 
     resources :notifications, only: [:index] do
       collection do
