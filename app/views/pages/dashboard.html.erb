@@ -1,45 +1,42 @@
 <h1 class="text-center"> <%= current_user.firstName %>'s dashboard</h1>
 <div class="container d-flex justify-content-around">
-  <% if current_user.houses.size > 0  %>
-    <div class="row">
-      <div class="col-sm-4">
-
+  <div class="row">
+    <% if current_user.houses.size > 0  %>
+      <div class="col-sm-5">
         <div>
           <h3 class="text-center">My Houses for Hosting</h3>
           <div class="row">
             <div class="my-houses">
-            <% current_user.houses.each do |house|  %>
-              <div class="col-sm-12 d-flex flex-column justify-content-center align-items-center">
-                <div class="card my-3" style="width: 18rem;">
-                  <%= image_tag "house_placeholder.png", width: "500px", class: "card-img-top" %>
-                  <div class ="p-1 text-center">
-                  <div class="card-title">
-                    <h5><%= house.name %></h5>
-                  </div>
-                  <%= link_to "See more", house_path(house) %>
+              <% current_user.houses.each do |house|  %>
+                <div class="col-sm-12 d-flex flex-column justify-content-center align-items-center">
+                  <div class="card my-3" style="width: 18rem;">
+                    <%= image_tag "house_placeholder.png", width: "500px", class: "card-img-top" %>
+                    <div class ="p-1 text-center">
+                      <div class="card-title">
+                        <h5><%= house.name %></h5>
+                      </div>
+                      <%= link_to "See more", house_path(house) %>
+                    </div>
                   </div>
                 </div>
-              </div>
-            <% end %>
+              <% end %>
             </div>
           </div>
+        </div>
       </div>
-      <% else %>
+    <% else %>
+      <div class="col-sm-6 d-flex align-items-center">
         <h3>You got no houses for hosting</h3>
-      <% end %>
-    </div>
-    <div class="col-sm-4 d-flex align-items-center justify-content-center">
-      <div class="search btn btn-warning">
-      <%= link_to "Look for a Place to stay", houses_path %>
-    </div>
-    </div>
+      </div>
+    <% end %>
+    <div class="col-sm d-flex align-items-center justify-content-center"></div>
     <div class="col-sm-4 d-flex flex-column justify-content-center">
-    <div class="search btn btn-success">
-      <%= link_to "Post a house", new_house_path %>
-    </div>
-    <div class="search btn btn-dark">
-      <h2 class="text-center"><%= link_to "Places I have booked", my_bookings_path %></h2>
-    </div>
+      <div class="search btn btn-success">
+        <%= link_to "Post a house", new_house_path %>
+      </div>
+      <div class="search btn btn-dark">
+        <h2 class="text-center"><%= link_to "Places I have booked", my_bookings_path %></h2>
+      </div>
     </div>
   </div>
 </div>

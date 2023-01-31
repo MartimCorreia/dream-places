@@ -14,15 +14,24 @@ class NotificationsController < ApplicationController
     @notification = Notification.new(notification_params)
     @notification.user_id = @house.user_id
     @notification.house_id = @house.id
+    @notification.customer_id = current_user.id
     @notification.save
     redirect_to root_path
   end
 
   def user_personal
     @notifications = Notification.where(user_id: current_user.id)
+
+    @booking = Booking.new(booking_params)
+    @booking.save
+
   end
 
   private
+
+  def booking_params
+    params.permit(:number_of_nights, :user_id)
+  end
 
   def set_house
     @house = House.find(params[:house_id])

@@ -10,19 +10,16 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new(booking_params)
+    @notification = Notification.find_by(house_id: params[:house_id])
+    @booking = Booking.new
     @booking.house_id = @house.id
-    @booking.user_id = current_user.id
-    @notification = Notification.new(
-      content: "#{current_user.firstName} #{current_user.lastName} wants to rent #{@booking.house.name} for #{@booking.number_of_nights} nights"
-      )
-    @booking.save
-    @notification.user_id = @booking.house.user_id
-    raise
-    @notification.save
-    if @booking.save == true
+    @booking.user_id = @notification.customer_id
+    @booking.number_of_nights = @notification.nights
+    if @booking.save
       @house.update(booked: true)
+      @notification.destroy
     end
+
 
     redirect_to root_path
   end
@@ -33,9 +30,9 @@ class BookingsController < ApplicationController
 
   private
 
-  def booking_params
-    params.require(:booking).permit(:number_of_nights)
-  end
+  # def booking_params
+  #   params.require(:booking).permit(:number_of_nights)
+  # end
 
   # def notification_params
   #   params.require(:notification).permit(:content)

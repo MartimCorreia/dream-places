@@ -1,14 +1,14 @@
-<div class="container">
+<div class="container m-5">
   <div class="row">
     <% @bookings.each do |booking| %>
-      <div class="col-sm-3">
-        <div class="card" style="width: 18rem;">
+      <div class="col-sm-4">
+        <div class="card m-3" style="width: 18rem;">
           <%= image_tag "house_placeholder.png", width: "500px", class: "card-img-top" %>
-          <div class="card-title">
-            <h5 class="text-center"><%= booking.house.name %> - <%= booking.house.price_per_night %></h5>
+          <div class="card-title mt-2 mb-0">
+            <h5><%= booking.house.name %></h5>
           </div>
-          <div class="card-body">
-           <p>You'll be staying here for <%= pluralize(booking.number_of_nights, "night") %></p>
+          <div class="card-body p-0">
+           <p class="mb-1">You'll be staying here for <%= pluralize(booking.number_of_nights, "night") %>.</p>
            <p>Amount to pay: <%= booking.number_of_nights * booking.house.price_per_night %> €</p>
           </div>
         </div>
@@ -16,3 +16,5 @@
     <% end %>
   </div>
 </div>
+
+

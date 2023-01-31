@@ -1,11 +1,12 @@
 <div class="container" data-controller="booking-confirmation">
-  <h1 data-booking-confirmation-target="testing">My Notifications</h1>
+  <h1>My Notifications</h1>
   <ul>
     <% @notifications.each do |notification| %>
       <li>
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center" data-booking-confirmation-target="notification">
           <p class="mb-0 me-5"><%= notification.content %> for <%= pluralize  notification.nights, "night" %>. </p>
-          <%= link_to "Accept", class:"btn btn-primary" %>
+
+          <%= button_to "Accept", house_bookings_path(notification.house_id) %>
 
         </div>
       </li>

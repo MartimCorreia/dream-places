@@ -1,6 +1,11 @@
 .my-houses{
-  background-color: white;
+  background-color: rgb(199, 128, 128);
   border-radius: 15px;
+  overflow-y: scroll;
+  height: 600px;
+}
+.my-houses::-webkit-scrollbar{
+  display: none;
 }
 .search{
   padding: 10px;
@@ -9,7 +14,7 @@
 }
 .search a{
   text-decoration: none;
-
+  color: white;
 }
 .post-house{
   background-color: yellow;
