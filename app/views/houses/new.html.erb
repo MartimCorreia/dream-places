@@ -2,12 +2,14 @@
   <h1>Posting a new House</h1>
   <%= simple_form_for(@house) do |f| %>
     <%= f.input :name %>
+    <%= f.input :country %>
+    <%= f.input :city %>
     <%= f.input :description %>
     <%= f.input :rules, label: ("Rules - Write each rule separated by a comma and no spaces ex.(rule,rule)") %>
-
-
-
     <%= f.input :price_per_night %>
     <%= f.submit %>
   <% end %>
 </div>
+
+
+

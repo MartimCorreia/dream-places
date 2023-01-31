@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require 'faker'
 
 User.destroy_all
 puts "Destroying all Users..."
@@ -34,6 +35,8 @@ houses.each do |house|
     House.create(name: house,
               description: "This is the house's description, soon will be filled and meaningful words.",
               price_per_night: 10,
+              country: Faker::Address.country,
+              city: Faker::Address.city,
               rules: "Rule number 1,Rule number 2, Rule number 3,Rule number 4",
               booked: false,
               user_id: martim.id

@@ -3,8 +3,20 @@ class HousesController < ApplicationController
   before_action :set_house, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bookings = Booking.all
-    @houses = House.all
+
+    if params[:query].present?
+      @bookings = Booking.all
+      sql_query = <<~SQL
+        houses.country ILIKE :query
+        OR houses.city ILIKE :query
+        OR houses.name ILIKE :query
+      SQL
+      @houses = House.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @bookings = Booking.all
+      @houses = House.all
+    end
+
   end
 
   def show
@@ -40,7 +52,7 @@ class HousesController < ApplicationController
   private
 
   def house_params
-    params.require(:house).permit(:name, :description, :rules, :price_per_night, :booked)
+    params.require(:house).permit(:name, :description, :rules, :price_per_night, :booked, :country, :city)
   end
 
   def set_house

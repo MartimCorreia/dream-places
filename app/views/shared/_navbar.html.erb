@@ -9,8 +9,19 @@
     </button>
 
 
-      <%= link_to "Look for a Place to stay", houses_path, class: "btn btn-warning" %>
-    
+      <%= form_with url: houses_path, method: :get, class:"d-flex search-bar" do %>
+        <div class="input-group">
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Find a place ex.Lisbon"
+          %>
+          <span class="input-group-btn">
+            <%= submit_tag "Search", class: "btn btn-danger search-button" %>
+          </span>
+        </div>
+      <% end %>
+
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
