@@ -7,9 +7,7 @@
     <%= f.input :description %>
     <%= f.input :rules, label: ("Rules - Write each rule separated by a comma and no spaces ex.(rule,rule)") %>
     <%= f.input :price_per_night %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.submit %>
   <% end %>
 </div>
-
-
-

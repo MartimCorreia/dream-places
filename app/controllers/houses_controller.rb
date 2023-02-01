@@ -52,7 +52,7 @@ class HousesController < ApplicationController
   private
 
   def house_params
-    params.require(:house).permit(:name, :description, :rules, :price_per_night, :booked, :country, :city)
+    params.require(:house).permit(:name, :description, :rules, :price_per_night, :booked, :country, :city, photos: [])
   end
 
   def set_house
