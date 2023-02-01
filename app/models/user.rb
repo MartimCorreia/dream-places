@@ -6,5 +6,6 @@ class User < ApplicationRecord
   has_many :houses, dependent: :destroy
   has_many :bookings, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_one_attached :picture
   validates_presence_of :firstName, :lastName, :email, :password
 end

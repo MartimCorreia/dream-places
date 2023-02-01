@@ -1,8 +1,9 @@
 <% if @house.user == current_user  %>
-
-  <div class="container">
+  <div class="container p-5">
       <div class="card" style="width: 18rem;">
-        <%= image_tag "house_placeholder.png", width: "500px", class: "card-img-top" %>
+        <% @house.photos.each do |photo| %>
+          <%= image_tag photo, width: "500px", class: "card-img-top" %>
+        <% end %>
         <div class="card-body">
           <h5 class="card-title"><%= @house.name %> - <small><%= @house.price_per_night %>€</small></h1>
           <p class="card-text"><%= @house.description %></p>
@@ -16,8 +17,9 @@
         </div>
       </div>
   </div>
-
 <% else %>
+
+
   <div class="container p-4">
     <div class="d-flex justify-content-center">
       <%= image_tag "house_placeholder.png", width: "400px" %>

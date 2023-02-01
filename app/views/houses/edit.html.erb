@@ -2,10 +2,11 @@
 
 <%= simple_form_for(@house) do |f| %>
   <%= f.input :name %>
-  <%= f.input :country %>
+  <%= f.input :country, as: :string %>
   <%= f.input :city %>
   <%= f.input :description %>
   <%= f.input :rules %>
   <%= f.input :price_per_night %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.submit %>
 <% end %>
