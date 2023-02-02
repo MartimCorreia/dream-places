@@ -8,4 +8,12 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_one_attached :picture
   validates_presence_of :firstName, :lastName, :email, :password
+
+  def picture_thumbnail
+    picture.variant(resize: "200x200!").processed
+  end
+
+  def picture_small
+    picture.variant(resize: "40x40!").processed
+  end
 end

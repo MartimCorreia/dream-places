@@ -1,13 +1,15 @@
-<div class="container" data-controller="booking-confirmation">
+<div class="container p-4" data-controller="booking-confirmation">
   <h1>My Notifications</h1>
   <ul>
     <% @notifications.each do |notification| %>
-      <li>
+      <li class="m-3">
         <div class="d-flex align-items-center" data-booking-confirmation-target="notification">
           <p class="mb-0 me-5"><%= notification.content %> for <%= pluralize  notification.nights, "night" %>. </p>
-
-          <%= button_to "Accept", house_bookings_path(notification.house_id) %>
-
+          <%= button_to "Accept", house_bookings_path(notification.house_id), class: "btn btn-success me-3 choice-button" %>
+          <%= link_to "Decline",
+            delete_notification_path(notification),
+            data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger choice-button"
+          %>
         </div>
       </li>
     <% end %>

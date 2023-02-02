@@ -19,3 +19,19 @@
 .post-house{
   background-color: yellow;
 }
+.booked-section {
+  min-height: 100px;
+}
+.booked-image-size {
+  width: 100px;
+}
+
+.booked-card {
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.booked-card:hover {
+  background-color: #e6100536 ;
+  transition: 0.5s;
+}

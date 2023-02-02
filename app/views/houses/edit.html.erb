@@ -1,12 +1,23 @@
-<h1>Edit</h1>
+<div class="container">
+  <h1>Edit house info</h1>
 
-<%= simple_form_for(@house) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :country, as: :string %>
-  <%= f.input :city %>
-  <%= f.input :description %>
-  <%= f.input :rules %>
-  <%= f.input :price_per_night %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-  <%= f.submit %>
-<% end %>
+  <%= simple_form_for(@house) do |f| %>
+    <%= f.input :name %>
+    <div class="row">
+      <div class="col-sm-3">
+        <%= f.input :country, as: :string %>
+      </div>
+      <div class="col-sm-3">
+        <%= f.input :city %>
+      </div>
+      <div class="col-sm-3">
+        <%= f.input :price_per_night %>
+      </div>
+      <div class="col-sm"></div>
+    </div>
+    <%= f.input :description %>
+    <%= f.input :rules, label: ("Rules - Write each rule separated by a comma and no spaces ex.(rule,rule)") %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    <%= f.button :submit, "Update info", class:"btn btn-danger default-button" %>
+  <% end %>
+</div>

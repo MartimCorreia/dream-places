@@ -19,13 +19,19 @@ class NotificationsController < ApplicationController
     redirect_to root_path
   end
 
+  def destroy
+
+    @notification = Notification.find(params[:id])
+    @notification.destroy
+    redirect_to user_personal_notifications_path
+  end
+
+
   def user_personal
     @notifications = Notification.where(user_id: current_user.id)
-
-    @booking = Booking.new(booking_params)
-    @booking.save
-
   end
+
+
 
   private
 

@@ -1,9 +1,14 @@
 <% if @house.user == current_user  %>
   <div class="container p-5">
       <div class="card" style="width: 18rem;">
-        <% @house.photos.each do |photo| %>
-          <%= image_tag photo, width: "500px", class: "card-img-top" %>
+        <% if @house.photos.empty? %>
+          <%= image_tag "house_placeholder.png", width: "500px", class: "card-img-top" %>
+        <% else %>
+          <% @house.photos.each do |photo| %>
+            <%= image_tag photo, width: "500px", class: "card-img-top" %>
+          <% end %>
         <% end %>
+
         <div class="card-body">
           <h5 class="card-title"><%= @house.name %> - <small><%= @house.price_per_night %>€</small></h1>
           <p class="card-text"><%= @house.description %></p>
@@ -22,7 +27,13 @@
 
   <div class="container p-4">
     <div class="d-flex justify-content-center">
-      <%= image_tag "house_placeholder.png", width: "400px" %>
+      <% if @house.photos.attached? %>
+        <% @house.photos.each do |photo| %>
+          <%= image_tag photo, width: "400px" %>
+        <% end %>
+      <% else %>
+        <%= image_tag "house_placeholder.png", width: "400px" %>
+      <% end %>
     </div>
   </div>
   <div class="container d-flex justify-content-around">
@@ -30,10 +41,11 @@
       <div>
         <h2>Info:</h2>
         <ul>
-          <li>Name: <%= @house.name %> </li>
-          <li>Description: <%= @house.description %> </li>
-          <li>Location: TODO </li>
-          <li>Price: <%= @house.price_per_night %>€/night </li>
+          <li> <strong>Name:</strong> <%= @house.name %> </li>
+          <li> <strong>Description: </strong><%= @house.description %> </li>
+          <li><strong>City:</strong> <%= @house.city %> </li>
+          <li><strong>Country:</strong> <%= @house.country %> </li>
+          <li><strong>Price:</strong> <%= @house.price_per_night %>€/night </li>
         </ul>
         <h2>Rules:</h2>
         <ul>
@@ -46,8 +58,11 @@
 
     <div id="host-details">
       <h2>Host:</h2>
-
+      <% if @house.user.picture.attached? %>
+        <%= image_tag @house.user.picture_thumbnail, width: "80px", class: "rounded-circle mx-auto d-block mb-2" %>
+      <% else %>
         <%= image_tag "house_placeholder.png", width: "80px", class: "rounded-circle mx-auto d-block" %>
+      <% end %>
 
       <ul>
         <li>Name: <%= @house.user.firstName %> <%= @house.user.lastName %></li>
@@ -58,10 +73,10 @@
   </div>
 
     <div class="container d-flex justify-content-center mt-4">
-      <% if @house.booked == false %>
+      <% if @house.booked == false && Notification.find_by(house_id: @house.id).nil? %>
        <%= link_to "Request a booking to the Host!", new_house_notification_path(@house), class:"btn-lg btn-primary" %>
       <% else %>
-        <%= link_to "Book it!", new_house_booking_path(@house), class:"btn btn-primary disbaled"  %>
+        <%= link_to "A request to book this place is ongoing...", new_house_booking_path(@house), class:"btn btn-primary disabled"  %>
       <% end %>
     </div>
 

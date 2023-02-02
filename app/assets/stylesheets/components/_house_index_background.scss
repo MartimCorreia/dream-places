@@ -1,5 +1,17 @@
 .house-index-background{
-  
+
   margin: 20px;
   padding: 10px;
+}
+.house-hover :hover {
+  img {
+    width: 110%;
+  }
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.card-img-top {
+  -webkit-transition: 1s;
+  transition: 1s;
 }

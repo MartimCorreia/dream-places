@@ -1,0 +1,38 @@
+<div class="container p-5">
+  <div class="row">
+    <div class="col-sm-4 borders">
+      <div class="picture-section d-flex flex-column align-items-center mt-4">
+        <% if @user.picture.attached?  %>
+          <%= image_tag @user.picture_thumbnail, class:"rounded-circle mb-3" %>
+        <% else %>
+          <%= image_tag "userPlaceholder.png", class: "avatar-profile mb-2" %>
+        <% end %>
+        <%= simple_form_for(@user, as: :user, url: picture_update_user_path(@user), html: {method: :put}) do |f| %>
+          <div class="form-inputs">
+            <%= f.input :picture, as: :file, label: false %>
+          </div>
+          <div class="form-actions mt-2 profile-links text-center">
+           <%= f.button :submit, "Update image", class: "submit-button" %>
+          </div>
+        <% end %>
+
+
+      </div>
+      <hr class="hr-tweak">
+      <div class="extra-section ms-3">
+        <h3> <strong>User confirmed</strong></h3>
+        <ul class="ps-0">
+          <li class="mb-2"><i class="fa-solid fa-check me-2"></i>Identity</li>
+          <li><i class="fa-solid fa-check me-2"></i>Phone number</li>
+        </ul>
+        (#TODO)
+      </div>
+    </div>
+    <div class="col-sm"></div>
+    <div class="col-sm-6">
+      <h2 class="mt-5 ms-3"><strong>Hi, my name is <%= @user.firstName %></strong></h2>
+      <p class="ms-3">Member since #TODO</p>
+      <p class="ms-3"><strong><%= link_to "Edit profile", "#", class:"profile-links" %></strong></p>
+    </div>
+  </div>
+</div>
