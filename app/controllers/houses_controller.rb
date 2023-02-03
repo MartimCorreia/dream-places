@@ -16,7 +16,6 @@ class HousesController < ApplicationController
       @bookings = Booking.all
       @houses = House.all
     end
-
   end
 
   def show
