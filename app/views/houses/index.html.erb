@@ -17,7 +17,7 @@
                 <h6 class="mb-0"> <strong><%= house.city %>, <%= house.country %></strong></h6>
               </div>
               <div class="card-body p-0">
-                <p>Host: <%= house.user.firstName %> <%= house.user.lastName %> <br> hello</p>
+                <p>Host: <%= link_to house.user.firstName.capitalize, user_pages_profile_path(house.user.id), style: "text-decoration: none" %> <%= link_to house.user.lastName.capitalize, user_pages_profile_path(house.user.id), style: "text-decoration: none"%> <br> hello</p>
               </div>
               <div class="card-body d-flex justify-content-between p-0">
                 <p> <strong>€<%=house.price_per_night.round%></strong>night</p>

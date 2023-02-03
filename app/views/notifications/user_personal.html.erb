@@ -4,7 +4,8 @@
     <% @notifications.each do |notification| %>
       <li class="m-3">
         <div class="d-flex align-items-center" data-booking-confirmation-target="notification">
-          <p class="mb-0 me-5"><%= notification.content %> for <%= pluralize  notification.nights, "night" %>. </p>
+          <p class="mb-0 me-5"><%= link_to User.find(notification.customer_id).firstName.capitalize, user_pages_profile_path(notification.customer_id) %>
+                               wants to book <%= notification.house.name %> for <%= pluralize  notification.nights, "night" %>. </p>
           <%= button_to "Accept", house_bookings_path(notification.house_id), class: "btn btn-success me-3 choice-button" %>
           <%= link_to "Decline",
             delete_notification_path(notification),

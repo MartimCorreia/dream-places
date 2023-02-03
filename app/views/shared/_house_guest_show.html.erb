@@ -1,0 +1,54 @@
+ <div class="container p-4">
+    <div class="d-flex justify-content-center">
+      <% if @house.photos.attached? %>
+        <% @house.photos.each do |photo| %>
+          <%= image_tag photo, width: "400px" %>
+        <% end %>
+      <% else %>
+        <%= image_tag "house_placeholder.png", width: "400px" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="container d-flex justify-content-around">
+    <div id="house-details">
+      <div>
+        <h2>Info:</h2>
+        <ul>
+          <li> <strong>Name:</strong> <%= @house.name %> </li>
+          <li> <strong>Description: </strong><%= @house.description %> </li>
+          <li><strong>City:</strong> <%= @house.city %> </li>
+          <li><strong>Country:</strong> <%= @house.country %> </li>
+          <li><strong>Price:</strong> <%= @house.price_per_night %>€/night </li>
+        </ul>
+        <h2>Rules:</h2>
+        <ul>
+          <% @rules.each do |rule| %>
+            <li> <%= rule %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <div id="host-details">
+      <h2>Host:</h2>
+      <% if @house.user.picture.attached? %>
+        <%= image_tag @house.user.picture_thumbnail, width: "80px", class: "rounded-circle mx-auto d-block mb-2" %>
+      <% else %>
+        <%= image_tag "house_placeholder.png", width: "80px", class: "rounded-circle mx-auto d-block" %>
+      <% end %>
+
+      <ul>
+        <li>Name: <%= @house.user.firstName %> <%= @house.user.lastName %></li>
+        <li>Rating: TODO add @rating to User</li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+
+    <div class="container d-flex justify-content-center mt-4">
+      <% if @house.booked == false && Notification.find_by(house_id: @house.id).nil? %>
+       <%= link_to "Request a booking to the Host!", new_house_notification_path(@house), class:"btn-lg btn-primary" %>
+      <% else %>
+        <%= link_to "A request to book this place is ongoing...", new_house_booking_path(@house), class:"btn btn-primary disabled"  %>
+      <% end %>
+    </div>

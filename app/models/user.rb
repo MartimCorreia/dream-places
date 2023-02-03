@@ -10,10 +10,10 @@ class User < ApplicationRecord
   validates_presence_of :firstName, :lastName, :email, :password
 
   def picture_thumbnail
-    picture.variant(resize: "200x200!").processed
+    picture.variant(resize_to_fill: [200, 200, { gravity: "Center" }]).processed
   end
 
   def picture_small
-    picture.variant(resize: "40x40!").processed
+    picture.variant(resize_to_fill: [40, 40, { gravity: "Center" }]).processed
   end
 end
