@@ -31,7 +31,7 @@
     <div class="col-sm"></div>
     <div class="col-sm-6">
       <h2 class="mt-5 ms-3"><strong>Hi, my name is <%= @user.firstName %></strong></h2>
-      <p class="ms-3">Member since #TODO</p>
+      <p class="ms-3">Member since <%= @user.created_at.year %></p>
       <p class="ms-3"><strong><%= link_to "Edit profile", "#", class:"profile-links" %></strong></p>
     </div>
   </div>
