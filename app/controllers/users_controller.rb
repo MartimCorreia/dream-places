@@ -2,11 +2,14 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:picture_update]
 
   def picture_update
-
-    @user.update_attribute(:picture, params[:user][:picture]) if !params[:user].nil?
-   
+    if !params[:user].nil? && params[:user][:picture].size <= 10485760
+     @user.update_attribute(:picture, params[:user][:picture])
+    else
+      flash[:alert] = "Image size must be under 10MB."
+    end
     redirect_to user_pages_profile_path(@user)
   end
+
 
   private
 

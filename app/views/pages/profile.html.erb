@@ -4,7 +4,7 @@
       <div class="picture-section d-flex flex-column align-items-center mt-4">
         <div class="avatar-section">
           <% if @user.picture.attached?  %>
-            <%= image_tag @user.picture_thumbnail, class:"rounded-circle mb-3" %>
+            <%= cl_image_tag @user.picture_thumbnail.key, class:"rounded-circle mb-3" %>
           <% else %>
             <%= image_tag "userPlaceholder.png", class: "avatar-profile mb-2" %>
           <% end %>
