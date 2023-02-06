@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-center">
       <% if @house.photos.attached? %>
         <% @house.photos.each do |photo| %>
-          <%= image_tag photo, width: "400px" %>
+          <%= image_tag photo, width: "400px", class: "show-house-img" %>
         <% end %>
       <% else %>
         <%= image_tag "house_placeholder.png", width: "400px" %>

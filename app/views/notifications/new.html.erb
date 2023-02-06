@@ -1,6 +1,13 @@
 <div class="container">
   <h1>Booking <%= @house.name %></h1>
-    <%= image_tag "house_placeholder.png", width: "500px" %>
+
+    <% if @house.photos.empty? %>
+      <%= image_tag "house_placeholder.png", width: "500px", class: "show-house-img" %>
+    <% else %>
+      <% @house.photos.each do |photo| %>
+        <%= image_tag photo, width: "500px", class: "show-house-img" %>
+      <% end %>
+    <% end %>
 
   <%= simple_form_for [@house, @notification] do |f| %>
     <%= f.input :nights, label: "How long would you like to stay?" %>
