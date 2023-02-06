@@ -1,0 +1,5 @@
+meta_product_name: "Dream Places"
+meta_title: "Dream Places - You dream it we get it"
+meta_description: "Where you can find the most unique and beautiful places you dreamed about"
+meta_image: "cover.png" # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account"   # required for Twitter Cards
