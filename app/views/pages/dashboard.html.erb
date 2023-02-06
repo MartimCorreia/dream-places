@@ -54,7 +54,9 @@
 <div class="container booked-section">
   <h3><strong>Places where have I been...</strong></h3>
   <div class="row">
-    <p> You still have not booked one place! <%=link_to "Start now!", houses_path if @bookings.empty? %></p>
+  <%if @bookings.empty?%>
+    <p> You still have not booked one place! <%=link_to "Start now!", houses_path  %></p>
+  <% end %>
     <% @bookings.each do |booking| %>
       <div class="col-sm-4 booked-card">
         <div class="card">
