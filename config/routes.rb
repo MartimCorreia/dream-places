@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :users , only: [:update], as: "update"
+  resources :users, only: [:update], as: "update"
   get "pages/dashboard", to: "pages#dashboard"
 
   resources :users do
@@ -30,16 +30,18 @@ Rails.application.routes.draw do
   delete "notifications/:id", to: "notifications#destroy", as: "delete_notification"
 
   resources :notifications, only: [:index, :show] do
+
     collection do
       get :user_personal
     end
   end
 
-  resources :chatrooms, only: :show do
+  resources :chatrooms, only: [:show] do
     resources :messages, only: :create
   end
-  
+
   resources :bookings, only: [:index] do
+    resources :chatrooms, only: :create
     collection do
       get :my
     end

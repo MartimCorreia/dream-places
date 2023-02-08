@@ -17,11 +17,9 @@ class BookingsController < ApplicationController
     @booking.number_of_nights = @notification.nights
     if @booking.save
       @house.update(booked: true)
-      @notification.destroy
     end
+    redirect_to chatroom_path(Chatroom.find_by(booking_id: @booking))
 
-
-    redirect_to root_path
   end
 
   def my
