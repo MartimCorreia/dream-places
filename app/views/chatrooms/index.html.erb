@@ -1,33 +1,53 @@
- <div class="container">
-  <% @chatrooms.each do |chatroom| %>
-    <% if current_user.id == chatroom.host_id  %>
-      <div class="row m-3">
-        <div class="col-sm-1 d-flex justify-content-end">
-          <% if User.find(chatroom.guest_id).picture.attached? %>
-            <%= cl_image_tag User.find(chatroom.guest_id).picture.key, class:"message-user-pic" %>
-          <% else %>
-            <%= image_tag "userPlaceholder.png", class:"message-user-pic" %>
-          <% end %>
-        </div>
-        <div class="col-sm-10 d-flex align-items-center">
-          <p> <%= chatroom.messages.last.content %> </p>
-        </div>
-      </div>
-      <% elsif current_user.id == chatroom.guest_id %>
-        <div class="row m-3">
-        <div class="col-sm-1 d-flex justify-content-end">
-          <% if User.find(chatroom.host_id).picture.attached? %>
-            <%= cl_image_tag User.find(chatroom.host_id).picture.key, class:"message-user-pic" %>
-          <% else %>
-            <%= image_tag "userPlaceholder.png", class:"message-user-pic" %>
-          <% end %>
-        </div>
-        <div class="col-sm-10 d-flex align-items-center">
-          <p> <%= chatroom.messages.last.content %> </p>
-        </div>
-      </div>
+<div class="container">
+  <div class="row m-3">
+    <div class="col-sm-4">
+      <% @chatrooms.each do |chatroom| %>
+        <% if current_user.id == chatroom.host_id  %>
+          <div class="card m-1">
+            <div class="row g-0">
+              <div class="col-sm-3 d-flex align-items-center">
+                <% if User.find(chatroom.guest_id).picture.attached? %>
+                  <%= cl_image_tag User.find(chatroom.guest_id).picture.key, class:"message-user-pic" %>
+                <% else %>
+                  <%= image_tag "userPlaceholder.png", class:"message-user-pic" %>
+                <% end %>
+              </div>
+              <div class="col-sm-9">
+                <div class="card-body">
+                  <div class="card-text">
+                    <p><%= chatroom.messages.last.content %></p>
+                    <i><%= chatroom.messages.last.created_at.strftime("%a %b at %l:%M %p")  %></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% elsif current_user.id == chatroom.guest_id %>
+          <div class="card m-1">
+            <div class="row g-0">
+              <div class="col-sm-3 d-flex align-items-center">
+                <% if User.find(chatroom.host_id).picture.attached? %>
+                  <%= cl_image_tag User.find(chatroom.host_id).picture.key, class:"message-user-pic" %>
+                <% else %>
+                  <%= image_tag "userPlaceholder.png", class:"message-user-pic" %>
+                <% end %>
+              </div>
+              <div class="col-sm-9">
+                <div class="card-body">
+                  <div class="card-text">
+                    <p><%= chatroom.messages.last.content %></p>
+                    <i><%= chatroom.messages.last.created_at.strftime("%a %b at %l:%M %p")  %></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
-
-
- </div>
+    </div>
+    <div class="col-sm-1 vl"></div>
+    <div class="col-sm-7">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo facilis quibusdam quos magnam culpa sapiente ducimus distinctio eveniet dignissimos adipisci facere nihil quae laboriosam consectetur molestias impedit, minima officia. Soluta.</p>
+    </div>
+  </div>
+</div>
