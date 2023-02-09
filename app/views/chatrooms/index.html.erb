@@ -1,0 +1,33 @@
+ <div class="container">
+  <% @chatrooms.each do |chatroom| %>
+    <% if current_user.id == chatroom.host_id  %>
+      <div class="row m-3">
+        <div class="col-sm-1 d-flex justify-content-end">
+          <% if User.find(chatroom.guest_id).picture.attached? %>
+            <%= cl_image_tag User.find(chatroom.guest_id).picture.key, class:"message-user-pic" %>
+          <% else %>
+            <%= image_tag "userPlaceholder.png", class:"message-user-pic" %>
+          <% end %>
+        </div>
+        <div class="col-sm-10 d-flex align-items-center">
+          <p> <%= chatroom.messages.last.content %> </p>
+        </div>
+      </div>
+      <% elsif current_user.id == chatroom.guest_id %>
+        <div class="row m-3">
+        <div class="col-sm-1 d-flex justify-content-end">
+          <% if User.find(chatroom.host_id).picture.attached? %>
+            <%= cl_image_tag User.find(chatroom.host_id).picture.key, class:"message-user-pic" %>
+          <% else %>
+            <%= image_tag "userPlaceholder.png", class:"message-user-pic" %>
+          <% end %>
+        </div>
+        <div class="col-sm-10 d-flex align-items-center">
+          <p> <%= chatroom.messages.last.content %> </p>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+
+
+ </div>
