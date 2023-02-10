@@ -1,11 +1,11 @@
-<div class="container" data-controller="conversation-trigger">
+<div class="container" >
   <div class="row m-3">
     <div class="col-sm-4">
       <% @chatrooms.each do |chatroom| %>
         <%= link_to chatroom_path(chatroom), class: "chat-text-deco" do %>
 
           <% if current_user.id == chatroom.host_id  %>
-            <div class="card m-3 borders p-2" id="chat-<%=chatroom.id%>"  data-action="click->conversation-trigger#render">
+            <div class="card m-3 borders p-2">
               <div class="row g-0">
                 <div class="col-sm-3 d-flex align-items-center">
                   <% if User.find(chatroom.guest_id).picture.attached? %>
