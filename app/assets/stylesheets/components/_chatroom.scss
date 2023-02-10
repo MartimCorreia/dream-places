@@ -28,3 +28,14 @@
     }
   }
 }
+.chat-text-deco{
+  text-decoration: none;
+  color: rgba(75, 74, 74, 0.87);
+}
+.chat-box {
+  overflow-y: scroll;
+  height: 70vh;
+}
+.chat-box::-webkit-scrollbar{
+  display: none;
+}

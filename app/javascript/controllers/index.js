@@ -10,5 +10,8 @@ application.register("booking-confirmation", BookingConfirmationController)
 import ChatroomSubscriptionController from "./chatroom_subscription_controller"
 application.register("chatroom-subscription", ChatroomSubscriptionController)
 
+import ConversationTriggerController from "./conversation_trigger_controller"
+application.register("conversation-trigger", ConversationTriggerController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
