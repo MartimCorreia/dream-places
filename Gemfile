@@ -11,7 +11,7 @@ gem "sprockets-rails"
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
 gem "dotenv-rails", groups: [:development, :test]
 gem "cloudinary"
-
+gem "redis"
 gem "importmap-rails"
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
