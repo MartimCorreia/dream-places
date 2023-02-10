@@ -17,9 +17,12 @@
                 <div class="col-sm-9">
                   <div class="card-body">
                     <div class="card-text">
-                      <p class="m-1"><%= chatroom.messages.last.content %></p>
-                      <p hidden data-conversation-trigger-target="chatsId" > <%= chatroom.id %></p>
-                      <i><%= (Time.now - chatroom.messages.last.created_at).round/60%> mins ago.</i>
+                      <% if chatroom.messages.empty? %>
+                        <p> <i><strong>No messages exchanged yet!</strong></i></p>
+                      <% else %>
+                        <p class="m-1"><%= chatroom.messages.last.content %></p>
+                        <i><%= (Time.now - chatroom.messages.last.created_at).round/60%> mins ago.</i>
+                      <% end %>
                     </div>
                   </div>
                 </div>
