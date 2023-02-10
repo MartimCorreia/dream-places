@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_08_142754) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_10_144309) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -88,6 +88,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_142754) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "notification_panels", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_notification_panels_on_user_id"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.string "content"
     t.boolean "confirmation", default: false
@@ -97,6 +104,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_142754) do
     t.integer "house_id"
     t.integer "nights"
     t.integer "customer_id"
+    t.bigint "notification_panel_id", null: false
+    t.index ["notification_panel_id"], name: "index_notifications_on_notification_panel_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
@@ -127,6 +136,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_142754) do
   add_foreign_key "houses", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "notification_panels", "users"
   add_foreign_key "notifications", "houses"
+  add_foreign_key "notifications", "notification_panels"
   add_foreign_key "notifications", "users"
 end

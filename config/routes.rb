@@ -46,4 +46,5 @@ Rails.application.routes.draw do
       get :my
     end
   end
+  resources :notification_panels, only: :show
 end

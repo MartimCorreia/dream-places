@@ -7,9 +7,12 @@ class ChatroomsController < ApplicationController
   end
 
   def index
-    @chatrooms = Chatroom.all
-  end
 
+    @chatrooms = Chatroom.all
+    if params[:id] != nil
+      @chatroom = Chatroom.find(params[:id])
+    end
+  end
 
   # def create
   #   @notification = Notification.find(params[:notification_id])

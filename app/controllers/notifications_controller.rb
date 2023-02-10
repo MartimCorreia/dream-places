@@ -15,6 +15,7 @@ class NotificationsController < ApplicationController
     @notification.user_id = @house.user_id
     @notification.house_id = @house.id
     @notification.customer_id = current_user.id
+    # @notification.notification_panel_id =
     @notification.save
     redirect_to root_path
   end

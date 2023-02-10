@@ -20,7 +20,7 @@
                       <% if chatroom.messages.empty? %>
                         <p> <i><strong>No messages exchanged yet!</strong></i></p>
                       <% else %>
-                        <p class="m-1"><%= chatroom.messages.last.content %></p>
+                        <p class="m-1" ><%= chatroom.messages.last.content %></p>
                         <i><%= (Time.now - chatroom.messages.last.created_at).round/60%> mins ago.</i>
                       <% end %>
                     </div>
@@ -44,7 +44,7 @@
                       <% if chatroom.messages.empty? %>
                         <p> <i><strong>No messages exchanged yet!</strong></i></p>
                       <% else %>
-                        <p class="m-1"><%= chatroom.messages.last.content %></p>
+                        <p class="m-1" ><%= chatroom.messages.last.content %></p>
                         <i><%= (Time.now - chatroom.messages.last.created_at).round/60%> mins ago.</i>
                       <% end %>
                     </div>
@@ -60,21 +60,7 @@
     <div class="col-sm-1 vl"></div>
     <div class="col-sm-7">
       <% if @chatroom.present? %>
-        <div class="container shadows mt-5" data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
-          <div class="messages chat-box" data-chatroom-subscription-target="messages">
-            <% @chatroom.messages.each do |message| %>
-                <%= render "messages/message", message: message %>
-            <% end %>
-          </div>
-          <%= simple_form_for [@chatroom, @message], html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex" } do |f| %>
-            <%= f.input :content,
-              label: false,
-              placeholder: "Message ##{@chatroom.name}",
-              wrapper_html: {class: "flex-grow-1"}
-            %>
-            <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-          <% end %>
-        </div>
+        <%= render "chats/chat", chatroom: @chatroom %>
       <% end %>
     </div>
   </div>
