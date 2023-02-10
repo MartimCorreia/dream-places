@@ -29,12 +29,7 @@ Rails.application.routes.draw do
 
   delete "notifications/:id", to: "notifications#destroy", as: "delete_notification"
 
-  resources :notifications, only: [:index, :show] do
-
-    collection do
-      get :user_personal
-    end
-  end
+  resources :notifications, only: [:index, :show]
 
   resources :chatrooms, only: [:show, :index] do
     resources :messages, only: :create

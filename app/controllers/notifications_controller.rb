@@ -26,14 +26,6 @@ class NotificationsController < ApplicationController
     @notification.destroy
     redirect_to user_personal_notifications_path
   end
-
-
-  def user_personal
-    @notifications = Notification.where(user_id: current_user.id)
-  end
-
-
-
   private
 
   def booking_params
