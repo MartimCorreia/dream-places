@@ -34,7 +34,7 @@
               <%= link_to "Notifications",  notification_panel_path(NotificationPanel.find_by(user_id: current_user.id).id), class: "nav-link" %>
             </div>
             <% if Notification.where(user_id: current_user.id).count > 0  %>
-              <div class="notification-icon rounded-circle d-flex justify-content-center">
+              <div class="notification-icon rounded-circle d-flex justify-content-center" id="unread_count">
                 <p><%= Notification.where(user_id: current_user.id).count %></p>
               </div>
             <% end %>

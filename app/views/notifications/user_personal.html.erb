@@ -1,8 +1,8 @@
 <%= turbo_stream_from "notifications" %>
-<div class="container p-4">
+<div class="container p-4" >
   <h1>My Notifications</h1>
   <ul>
-    <% @notification_panel.notifications.each do |notification| %>
+    <% @notifications.each do |notification| %>
       <%= render "notifications/notification", notification: notification  %>
     <% end %>
   </ul>

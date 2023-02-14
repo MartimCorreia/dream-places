@@ -9,6 +9,10 @@ class NotificationsController < ApplicationController
     @notification = Notification.new
   end
 
+  def user_personal
+    @notifications = Notification.where(user_id: current_user.id)
+  end
+
 
   def create
     @notification = Notification.new(notification_params)
@@ -24,7 +28,7 @@ class NotificationsController < ApplicationController
 
     @notification = Notification.find(params[:id])
     @notification.destroy
-    redirect_to user_personal_notifications_path
+    redirect_to notification_panel_path(NotificationPanel.find_by(user_id: current_user.id))
   end
   private
 
