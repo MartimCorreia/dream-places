@@ -9,7 +9,7 @@
               <div class="row g-0">
                 <div class="col-sm-3 d-flex align-items-center">
                   <% if User.find(chatroom.guest_id).picture.attached? %>
-                    <%= cl_image_tag User.find(chatroom.guest_id).picture.key, class:"message-user-pic" %>
+                    <%= cl_image_tag User.find(chatroom.guest_id).picture.key, width: 80, height: 80, crop: :thumb, gravity: :face, class:"rounded-circle" %>
                   <% else %>
                     <%= image_tag "userPlaceholder.png", class:"message-user-pic" %>
                   <% end %>
@@ -33,7 +33,7 @@
               <div class="row g-0">
                 <div class="col-sm-3 d-flex align-items-center">
                   <% if User.find(chatroom.host_id).picture.attached? %>
-                    <%= cl_image_tag User.find(chatroom.host_id).picture.key, class:"message-user-pic" %>
+                    <%= cl_image_tag User.find(chatroom.host_id).picture.key, width: 80, height: 80, crop: :thumb, gravity: :face, class:"rounded-circle" %>
                   <% else %>
                     <%= image_tag "userPlaceholder.png", class:"message-user-pic" %>
                   <% end %>

@@ -40,3 +40,27 @@ body{
   -moz-box-shadow: 6px 6px 5px -4px rgba(0,0,0,0.3);
   box-shadow: 6px 6px 5px -4px rgba(0,0,0,0.3);
 }
+
+.card-category {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 36px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 70px;
+      transition: 1.5s;
+    }
+}
+.hidden-text {
+  opacity: 0;
+}

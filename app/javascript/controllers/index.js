@@ -16,5 +16,8 @@ application.register("conversation-trigger", ConversationTriggerController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import LandingTitleController from "./landing_title_controller"
+application.register("landing-title", LandingTitleController)
+
 import NotificationPanelSubscriptionController from "./notification_panel_subscription_controller"
 application.register("notification-panel-subscription", NotificationPanelSubscriptionController)

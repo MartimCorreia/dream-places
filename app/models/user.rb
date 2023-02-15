@@ -25,4 +25,8 @@ class User < ApplicationRecord
   def picture_small
     picture.variant(resize_to_fill: [40, 40]).processed
   end
+
+  def picture_medium
+    picture.variant(resize_to_fill: [80, 80]).processed
+  end
 end
